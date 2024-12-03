@@ -5,10 +5,10 @@ $host = 'localhost';
 $user = 'root';
 $pass = '';
 $name = 'AA LANGUGAGE II';
-$link2 = new mysqli($host, $user, $pass, $name) or die('Нет подключения к базе данных');
-$select = "SELECT * FROM `partners_import`";
-$result = $link2->query($select);
-$res = $result -> fetch_all(MYSQLI_ASSOC);
+$link2 = mysqli_connect($host, $user, $pass, $name) or die('Нет подключения к базе данных');
+$login = $_SESSION['login'];
+$select = "SELECT * FROM `partners_import` WHERE `partners_import`.`mail-partner` = '$login'";
+$result = mysqli_query( $link2, $select) or die("Запрос не сработал");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@ $res = $result -> fetch_all(MYSQLI_ASSOC);
     <h1>Добро пожаловать на страницу юзера</h1>
     <button>Выход</button>
     <?php
-        foreach($res as $row) {
+        while($row = mysqli_fetch_assoc($result)) {
     ?>
     <div class="card">
         <div class="content-left">

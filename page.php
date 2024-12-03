@@ -6,9 +6,12 @@ $user = 'root';
 $pass = '';
 $name = 'AA LANGUGAGE II';
 $link2 = new mysqli($host, $user, $pass, $name) or die('Нет подключения к базе данных');
-$select = "SELECT * FROM `partners_import`";
+$select = "SELECT * FROM `partners_import` WHERE `partners_import`.`mail-partner` NOT IN ('admin')";
+$computeDisk = "SELECT `name-partner`, SUM(`count-partner`) AS TOTAL FROM `partner_products_import` GROUP BY `name-partner`";
 $result = $link2->query($select);
 $res = $result -> fetch_all(MYSQLI_ASSOC);
+$resultDisk = $link2 -> query($computeDisk);
+$resDisk = $resultDisk -> fetch_all(MYSQLI_ASSOC);
 if($_SESSION['user'] != 'admin')
 {
     header('Location:index.php');
@@ -38,7 +41,13 @@ if($_SESSION['user'] != 'admin')
             <p><?php echo 'Рейтинг: ' . $row['rating-partner'] ?></p>
         </div>
         <div class="content-right">
-            <p>10%</p>
+            <?php
+                foreach($resDisk as $disk) {
+            ?>
+                <p><?php print_r($disk) ?></p>
+            <?php
+            }
+            ?>
         </div>
     </div>
     <?php

@@ -624,8 +624,9 @@
     $result = mysqli_query($link, $select) or die('Запрос не сработал');
     while($row = mysqli_fetch_assoc($result)){
         if(isset($_POST['password']) && isset($_POST['login']) && !empty($_POST)){
-            mysqli_real_escape_string($link, $row['password']);
-            mysqli_real_escape_string($link, $row['login']);
+            $_SESSION['login'] = $_POST['login'];
+            mysqli_real_escape_string($link, $_POST['password']);
+            mysqli_real_escape_string($link, $_POST['login']);
             $inputPassword = $_POST['password'];
             $inputLogin = $_POST['login'];
             if($inputPassword === '111' && $inputLogin === 'admin'){
@@ -643,8 +644,8 @@
 <body>
     <form action="" method="POST">
         <input type="text" name="login" id="login" placeholder="Введите логин">
-        <input type="text" name="password" id="password" placeholder="Введите пароль">
-        <input type="submit">
+        <input type="password" name="password" id="password" placeholder="Введите пароль">
+        <input type="submit" id="start">
     </form>
 </body>
 </html>
