@@ -427,6 +427,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/indexStyle.css">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <!-- <form action="" method="POST"> -->
@@ -643,6 +644,7 @@
 </head>
 <body>
     <form action="" method="POST">
+        <h1>Добро пожаловать!</h1>
         <input type="text" name="login" id="login" placeholder="Введите логин">
         <input type="password" name="password" id="password" placeholder="Введите пароль">
         <input type="submit" id="start">

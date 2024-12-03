@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+}
+*::selection{
+    background: none;
+    color: rgb(136, 201, 136);
+}
+form{
+    /* background-color: coral; */
+    width: 240px;
+    height: 180px;
+    margin: 200px auto 0 auto;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-content: center;
+    text-align: center;
+    align-items: center;
+}
+input{
+    border: 1px solid black;
+    border-radius: none;
+    transition-duration: 0.5s;
+}
+#login,#password{
+    padding: 0 0 0 5px;
+    outline: none;
+}
+#start{
+    width: 100px;
+    background-color: rgb(245, 187, 166);
+}
+input:hover{
+    border-radius: 20px;
+}
+#start:hover{
+    width: 110px;
+    padding: 2px;
+    background-color: rgb(177, 141, 211);
+}

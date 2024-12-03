@@ -4,6 +4,10 @@
     text-decoration: none;
     font-family: 'Segoe UI';
 }
+*::selection{
+    background: none;
+    color: rgb(136, 201, 136);
+}
 .card{
     border: 1px solid black;
     display: flex;
