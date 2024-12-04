@@ -9,9 +9,13 @@ $link2 = new mysqli($host, $user, $pass, $name) or die('Нет подключе�
 $select = "SELECT * FROM `partners_import` WHERE `partners_import`.`mail-partner` NOT IN ('admin')";
 $computeDisk = "SELECT `name-partner`, SUM(`count-partner`) AS TOTAL FROM `partner_products_import` GROUP BY `name-partner`";
 $result = $link2->query($select);
+if($result -> num_rows > 0){
+    $_SESSION['id-partner'] = $result -> fetch_assoc()['id-partner'];
+    $partnerId = $_SESSION['id-partner'];
+}
 $res = $result -> fetch_all(MYSQLI_ASSOC);
-$resultDisk = $link2 -> query($computeDisk);
-$resDisk = $resultDisk -> fetch_all(MYSQLI_ASSOC);
+$selectDiscount = "SELECT `name-partner`, SUM(`count-partner`) AS TOTAL FROM `partner_products_import` GROUP BY `name-partner`";
+$resultDiscount = $link2 -> query($selectDiscount) or die("Запрос на сумму продаж пользователя не сработал");
 if($_SESSION['user'] != 'admin')
 {
     header('Location:index.php');
@@ -42,9 +46,28 @@ if($_SESSION['user'] != 'admin')
         </div>
         <div class="content-right">
             <?php
-                foreach($resDisk as $disk) {
+                foreach($resultDiscount as $discount) {
             ?>
-                <p><?php print_r($disk) ?></p>
+                    <?php
+                    // print_r($discount);
+                    $name = $row["id-partner"];
+                    $query = $link2->query("SELECT `id-partner` FROM `partners_import` WHERE `id-partner` = '$name'");
+                    $resQuery = $query -> fetch_assoc();
+                    if($discount['name-partner'] == $resQuery['id-partner'])
+                    { ?>
+                        <p>
+                        <?php
+                            if($discount['TOTAL'] <= 10000){echo '0%';}
+                            else if ( $discount['TOTAL'] > 10000 && $discount['TOTAL']  <= 50000){echo '5%';}
+                            else if ( $discount['TOTAL'] > 50000 && $discount['TOTAL'] <= 300000){echo '10%';}
+                            else if ( $discount['TOTAL'] > 300000){echo '15%';}
+                            else {echo '0%';}
+                        ?>
+                        </p>
+                <?php
+                    }      
+                ?>
+                  
             <?php
             }
             ?>

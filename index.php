@@ -651,3 +651,6 @@
     </form>
 </body>
 </html>
+<?php
+$link -> close();
+?>
