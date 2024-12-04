@@ -1,0 +1,16 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+}
+*::selection{
+    background: none;
+    color: rgb(136, 201, 136);
+}
+table,td{
+    border: 1px solid black;
+}
+table{
+    margin: 150px auto 0 auto;
+}

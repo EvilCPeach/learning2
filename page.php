@@ -16,8 +16,7 @@ if($result -> num_rows > 0){
 $res = $result -> fetch_all(MYSQLI_ASSOC);
 $selectDiscount = "SELECT `name-partner`, SUM(`count-partner`) AS TOTAL FROM `partner_products_import` GROUP BY `name-partner`";
 $resultDiscount = $link2 -> query($selectDiscount) or die("Запрос на сумму продаж пользователя не сработал");
-if($_SESSION['user'] != 'admin')
-{
+if($_SESSION['user'] != 'admin'){
     header('Location:index.php');
 }
 ?>
@@ -76,5 +75,6 @@ if($_SESSION['user'] != 'admin')
     <?php
         }
     ?>
+    <a href="requests.php">Посмотреть заявки</a>
 </body>
 </html>

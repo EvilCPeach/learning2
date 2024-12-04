@@ -68,5 +68,6 @@ $resultDiscount = $link2 -> query($selectDiscount) or die("Запрос на с�
             <?php session_destroy(); ?>
         });
     </script>
+    <a href="addRequest.php">Отправить заявку</a>
 </body>
 </html>
