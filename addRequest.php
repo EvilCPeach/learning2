@@ -7,7 +7,6 @@ $pass = '';
 $name = 'AA LANGUGAGE II';
 $link2 = new mysqli($host, $user, $pass, $name) or die('Нет подключения к базе данных');
 $userSession = $_SESSION['user'];
-print_r($userSession);
 $select = "SELECT * FROM `partners_import` WHERE `partners_import`.`mail-partner` = '$userSession'";
 $result = $link2 -> query($select) or die("Запрос на выбор не сработал");
 if($result -> num_rows > 0){
@@ -31,7 +30,6 @@ if(!empty($_GET)){
     $add = "INSERT INTO `requests`(`name-partner`, `name-product`, `count-product`, `approved`, `paid`) VALUES ('$partnerId','$nameProduct','$countPartner','0','$paid')";
     $addQuery = $link2->query($add) or die("Запрос на добавление не сработал");
 }
-print_r($_GET);
 ?>
 <!DOCTYPE html>
 <html lang="en">

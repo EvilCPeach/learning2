@@ -16,7 +16,7 @@ if($result -> num_rows > 0){
     $_SESSION['id-partner'] = $result -> fetch_assoc()['id-partner'];
     $partnerId = $_SESSION['id-partner'];
 }
-$res = $result-> fetch_all(MYSQLI_ASSOC);
+$res = $result -> fetch_all(MYSQLI_ASSOC);
 $selectDiscount = "SELECT `name-partner`, SUM(`count-partner`) AS TOTAL FROM `partner_products_import` WHERE `name-partner` = '$partnerId'";
 $resultDiscount = $link2 -> query($selectDiscount) or die("Запрос на сумму продаж пользователя не сработал");
 ?>
