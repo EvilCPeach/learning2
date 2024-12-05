@@ -7,7 +7,9 @@ $name = 'AA LANGUGAGE II';
 $link = mysqli_connect($host, $user, $pass, $name) or die('Нет подключения к базе данных');
 $select = "SELECT * FROM `requests`";
 $result = mysqli_query($link, $select) or die('Запрос на вывод данных не сработал');
-if(isset($_POST[''])){
+// if(isset($_POST[''])){
+
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">

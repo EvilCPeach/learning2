@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Segoe UI';
+}
+*::selection{
+    background: none;
+    color: rgb(136, 201, 136);
+}
+form{
+    /* background-color: coral; */
+    width: 235px;
+    height: 200px;
+    margin: 150px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+input,select{
+    width: 215px;
+    margin: 0 0 15px 0;
+}

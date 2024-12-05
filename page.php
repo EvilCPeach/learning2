@@ -30,7 +30,7 @@ if($_SESSION['user'] != 'admin'){
 </head>
 <body>
     <h1>Добро пожаловать на страницу партнёра</h1>
-    <a href="./index.php"<?php session_destroy() ?>>Выход</a>
+    <a href="exit.php">Выход</a>
     <?php
         foreach($res as $row) {
     ?>

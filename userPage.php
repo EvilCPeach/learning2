@@ -6,8 +6,11 @@ $user = 'root';
 $pass = '';
 $name = 'AA LANGUGAGE II';
 $link2 = new mysqli($host, $user, $pass, $name) or die('Нет подключения к базе данных');
-$login = $_SESSION['login'];
-$select = "SELECT * FROM `partners_import` WHERE `partners_import`.`mail-partner` = '$login'";
+$userSession = $_SESSION['user'];
+if($_SESSION['user'] == ""){
+    header("Location: index.php");
+}
+$select = "SELECT * FROM `partners_import` WHERE `partners_import`.`mail-partner` = '$userSession'";
 $result = $link2 -> query($select) or die("Запрос не сработал");
 if($result -> num_rows > 0){
     $_SESSION['id-partner'] = $result -> fetch_assoc()['id-partner'];
@@ -27,10 +30,9 @@ $resultDiscount = $link2 -> query($selectDiscount) or die("Запрос на с�
 </head>
 <body>
     <h1>Добро пожаловать на страницу юзера</h1>
-    <button>Выход</button>
+    <a href="exit.php">Выход</a>
     <?php
         foreach($result as $row) {
-            
     ?>
     <div class="card">
         <div class="content-left">
@@ -62,12 +64,6 @@ $resultDiscount = $link2 -> query($selectDiscount) or die("Запрос на с�
     <?php
         }
     ?>
-    <script>
-        let button = document.querySelector('button').addEventListener('click',function(){
-            window.location.replace('index.php');
-            <?php session_destroy(); ?>
-        });
-    </script>
     <a href="addRequest.php">Отправить заявку</a>
 </body>
 </html>
