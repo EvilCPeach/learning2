@@ -37,6 +37,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET" && isset($_GET['approve'])){
     <title>Document</title>
 </head>
 <body>
+    <a href="page.php">Вернуться</a>
     <table>
         <tr>
             <td>id</td>

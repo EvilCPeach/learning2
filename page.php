@@ -17,7 +17,10 @@ $res = $result -> fetch_all(MYSQLI_ASSOC);
 $selectDiscount = "SELECT `name-partner`, SUM(`count-partner`) AS TOTAL FROM `partner_products_import` GROUP BY `name-partner`";
 $resultDiscount = $link2 -> query($selectDiscount) or die("Запрос на сумму продаж пользователя не сработал");
 if($_SESSION['user'] != 'admin'){
-    header('Location:index.php');
+    header('Location:userPage.php');
+}
+if($_SESSION['user'] == ""){
+    header("Location: index.php");
 }
 ?>
 <!DOCTYPE html>
@@ -48,7 +51,6 @@ if($_SESSION['user'] != 'admin'){
                 foreach($resultDiscount as $discount) {
             ?>
                     <?php
-                    // print_r($discount);
                     $name = $row["id-partner"];
                     $query = $link2->query("SELECT `id-partner` FROM `partners_import` WHERE `id-partner` = '$name'");
                     $resQuery = $query -> fetch_assoc();
